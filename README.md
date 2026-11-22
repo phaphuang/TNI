@@ -9,7 +9,7 @@ TNI ranks the nodes of a network by combining three measures into a single score
 3. **Global communicability**: the sum of a node's communicability to all other nodes, via the matrix exponential of the adjacency matrix. In weighted networks the adjacency matrix is degree-normalised first.
 
 ```
-TNI(i) = LcI(i) * GbI(v) * GvI(v)
+TNI(i) = LcI(i) * GbI(i) * GvI(i)
 ```
 
 ## Citation
