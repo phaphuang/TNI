@@ -12,7 +12,6 @@ def compute_global_communicability(G):
     communicability = nx.communicability_exp(G)  # Returns a dict-of-dicts.
     global_comm = {}
     for i in G.nodes():
-        # global_comm[i] = sum(communicability[i].values())
         global_comm[i] = (1/2) * sum(communicability[i].values())
     return global_comm
 
@@ -45,7 +44,6 @@ def compute_global_communicability_weighted(G, weight='weight'):
     # Compute global communicability for each node
     global_comm = {}
     for i in G.nodes():
-        #global_comm[i] = (sum(communicability[i].values()))
         global_comm[i] = (1/2) * sum(communicability[i].values())
     
     return global_comm
@@ -79,14 +77,8 @@ def compute_TNI(G, R, network_type="unweighted"):
         # Global communicability component
         GI = compute_global_communicability_weighted(G, weight='weight')
 
-    # print(LI.values())
-    # print(gravity.values())
-    # print(GI.values())
-
     for node in G.nodes():
-        TNI[node] = LI[node] * gravity[node] * (GI[node] / len(G.nodes()))
-    
-    # print(TNI.values())
+        TNI[node] = LI[node] * gravity[node] * GI[node]
     
     # Return communicability matrix
     CM = GI.copy()
